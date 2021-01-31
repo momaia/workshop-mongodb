@@ -3,7 +3,6 @@ package com.maiamateus.workshopmongodb.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.maiamateus.workshopmongodb.domain.User;
@@ -16,9 +15,6 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository repo;
-	
-	@Autowired
-	private BCryptPasswordEncoder pe;
 
 	public List<User> findAll(){
 		return repo.findAll();
@@ -53,6 +49,6 @@ public class UserService {
 	}
 	
 	public User fromDTO(UserDTO objDto) {
-		return new User(objDto.getId(), objDto.getName(), objDto.getEmail(), pe.encode(objDto.getSenha()));
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 }

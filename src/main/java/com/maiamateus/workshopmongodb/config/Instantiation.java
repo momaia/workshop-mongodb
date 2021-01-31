@@ -6,7 +6,6 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.maiamateus.workshopmongodb.domain.Post;
 import com.maiamateus.workshopmongodb.domain.User;
@@ -22,9 +21,6 @@ public class Instantiation implements CommandLineRunner{
 	
 	@Autowired
 	private PostRepository postRepository;
-	
-	@Autowired
-	private BCryptPasswordEncoder pe;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -34,9 +30,9 @@ public class Instantiation implements CommandLineRunner{
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 
-		User maria = new User(null, "Maria Brown", "maria@gmail.com", pe.encode("741"));
-		User alex = new User(null, "Alex Green", "alex@gmail.com", pe.encode("852"));
-		User bob = new User(null, "Bob Grey", "bob@gmail.com", pe.encode("963"));
+		User maria = new User(null, "Maria Brown", "maria@gmail.com");
+		User alex = new User(null, "Alex Green", "alex@gmail.com");
+		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
